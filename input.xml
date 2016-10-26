@@ -1,0 +1,65 @@
+<multidim>
+	<dimension name="Universidad">
+		<level>	
+			<property ID="true" type="string">
+				Nombre
+			</property >
+			<property type="numeric">
+				CantAlu
+			</property >
+		</level>
+
+		<hierarchy name="Categoria">
+			
+			<level name="Facultad" pos="1">
+				<property ID="true" type="string">
+					Nombre 
+				</property >
+			</level>
+				
+			<level name="Carrera" pos="2">
+				<property ID="true" type="numeric">
+					tipoID 
+				</property >
+			</level>
+		</hierarchy>
+
+	</dimension>
+
+
+	<dimension name="Temporal"> 
+		<level>
+			<property ID="true" type="timestamp"> dia
+			</property > 
+		</level>
+		
+		<hierarchy name="calendar">
+			<level name="Month" pos="1">
+				<property type="string"> Nombre
+				</property >
+				
+				<property ID="true" type="numeric">
+				Mes </property >
+
+			</level>
+			
+			<level name="Year" pos="2">
+				<property ID="true" type="numeric"> anio
+				</property >
+				
+				<property type="numeric" ID="false">
+				esBisiesto 
+				</property >
+
+			</level>
+		</hierarchy>
+	</dimension>
+
+	<cubo name="Promedios">
+	<measure name="promedio" type="numeric" agg="avg"/>
+	<dimension name="Universidad" ptr="Universidad" />
+	<dimension name="inicio" ptr="Temporal" />
+	<dimension name="fin" ptr="Temporal" />
+</cubo>
+
+</multidim>
